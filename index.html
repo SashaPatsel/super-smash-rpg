@@ -17,16 +17,17 @@
 			<audio class="audio-player" controls autoplay loop> 
 	  	<source src="assets/music/Hyrule Castle - Super Smash Bros. Music Extended.mp3">
 			</audio>
-		<h2 class="char-select">Character Select:</h2>
-			<img class="" width="10%" height="auto" src="assets/images/Mario-ssb.png">
-			<img class="" width="10%" height="auto" src="assets/images/kirby-ssb.png">
-			<img class="" width="10%" height="auto" src="assets/images/Donkey-Kong-ssb.png">
-			<img class="" width="10%" height="auto" src="assets/images/Pikachu-ssb.png">
-		<br>
+<!-- 		<h2 class="char-select">Character Select:</h2> -->
+			<img id="mario" class="character" width="10%" height="auto" src="assets/images/Mario-ssb.png">
+			<img id="kirby" class="character" width="10%" height="auto" src="assets/images/kirby-ssb.png">
+			<img id="dk" class="character" width="10%" height="auto" src="assets/images/Donkey-Kong-ssb.png">
+			<img id="pika" class="character" width="10%" height="auto" src="assets/images/Pikachu-ssb.png">
+		<h2 class="char-select">Player 1:</h2>
+			<div id="player-one"></div>
 		<h2 class="char-select">Your Opponents:</h2>
-			<div id="opponent1"></div>
-			<div id="opponent2"></div>
-			<div id="opponent3"></div>	
+			<div id="opponents"></div>
+		<h2 class="char-select">Melee!</h2>
+			<div id="current-opponent"></div>
 	
 	
 	
@@ -35,4 +36,61 @@
 </body>
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	
+//To do:
+
+//1. Identify needed global Variables	x
+//2. Move all characters other than user's choice down to 
+//   opponent section	x
+//3. Select opponent to go down to melee
+//4. 
+
+console.log("hi")
+
+$(document).ready(function() {
+
+//Global Variables:
+
+	//Mario stats
+	var marioDam = 20;
+	var marioHP = 120;
+
+	//Kirby stats
+	var kirbyDam = 15;
+	var kirbyHp = 180;
+
+	//DK stats
+	var dkDam = 30;
+	var dkHP = 100;
+
+	//Pikachu stats
+	var pikaDam = 25;
+	var pikaHP = 145;
+
+	isCharacterChosen = false;
+
+	//Reset
+	function reset() {
+
+	}
+
+	//Moves the chosen character to player 1
+	$(".character").on("click", function() {
+		$(".character").appendTo("#player-one")
+	});	
+
+	if (isCharacterChosen) {
+		$(".character").appendTo("#player-one")
+	}
+
+});
+
+
+//Might be used... might go to graveyard... might include pseudocode...
+
+// if (playerHealth <= 0) {
+// 	$("#game-over").text(show())
+// }
+</script>
 </html>
