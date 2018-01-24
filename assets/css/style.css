@@ -26,8 +26,45 @@ body {
     right: .5%;
 }
 
+.audio-player:hover {
+	opacity: .7;
+}
+
 .char-select {
 	font-size: 40px;
 	color: white;
 	font-family: 'Bangers', cursive;
+}
+
+#start-over {
+	font-family: 'Bangers', cursive;
+	font-size: 20px;
+	padding: 8px;
+	background-color:rgb(110,110,110);
+	color: white;
+	position: absolute;
+	top: 10px;
+    left: .5%;
+}
+
+#start-over:hover {
+	opacity: .7;
+}
+
+.character:hover {
+	opacity: .7;
+}
+
+.attack {
+	font-family: 'Bangers', cursive;
+	font-size: 20px;
+	padding: 8px;
+	background-color:rgb(70,230,70);
+	color: white;
+	position: relative;
+	width: 80px;
+}
+
+.attack:hover {
+	opacity: .7;
 }
