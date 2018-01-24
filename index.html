@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Super Smash Bros! (kinda)</title>
+	<title>Super Smash Bros! (kind of)</title>
+	<!-- Reset CSS -->
 	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<!-- My Stylesheet -->
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- Game's font -->
+	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 </head>
 <body>
+
+		<h1 class="first-head">Super Smash Bros! <span id="sad-kinda">(kind of)</span></h1>
+			<audio class="audio-player" controls autoplay loop> 
+	  	<source src="assets/music/Hyrule Castle - Super Smash Bros. Music Extended.mp3">
+			</audio>
+		<h2 class="char-select">Character Select:</h2>
+			<img class="" width="10%" height="auto" src="assets/images/Mario-ssb.png">
+			<img class="" width="10%" height="auto" src="assets/images/kirby-ssb.png">
+			<img class="" width="10%" height="auto" src="assets/images/Donkey-Kong-ssb.png">
+			<img class="" width="10%" height="auto" src="assets/images/Pikachu-ssb.png">
+		<br>
+		<h2 class="char-select">Your Opponents:</h2>
+			<div id="opponent1"></div>
+			<div id="opponent2"></div>
+			<div id="opponent3"></div>	
+	
+	
+	
+	
 
 </body>
 <script type="text/javascript" src="assets/javascript/game.js"></script>
