@@ -65,3 +65,7 @@ body {
 .attack:hover {
 	opacity: .7;
 }
+
+.melee-bg {
+	border: solid red 3px;
+}
