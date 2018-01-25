@@ -24,10 +24,10 @@
 
 			<!-- Character div -->
 			<div class="char-possible">
-			<img id="mario" class="character bad-guys" width="10%" height="auto" value=mario src="assets/images/Mario-ssb.png">
-			<img id="kirby" class="character bad-guys" width="10%" height="auto" src="assets/images/kirby-ssb.png">
-			<img id="dk" class="character bad-guys" width="10%" height="auto" src="assets/images/Donkey-Kong-ssb.png">
-			<img id="pika" class="character bad-guys" width="10%" height="auto" src="assets/images/Pikachu-ssb.png">
+			<img id="mario" class="character" width="10%" height="auto" value=mario src="assets/images/Mario-ssb.png">
+			<img id="kirby" class="character" width="10%" height="auto" src="assets/images/kirby-ssb.png">
+			<img id="dk" class="character" width="10%" height="auto" src="assets/images/Donkey-Kong-ssb.png">
+			<img id="pika" class="character" width="10%" height="auto" src="assets/images/Pikachu-ssb.png">
 			</div>
 			<!-- Close characer div -->
 
@@ -52,181 +52,281 @@
 		<!-- All should be centered for mobile version. Will need to use media queries -->
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!-- <script type="text/javascript" src="assets/javascript/game.js"></script> -->
-<script type="text/javascript">
-	$(document).ready(function() {
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 
+<!-- <script type="text/javascript">
+//Questions:
+//1. How can I push the value of an id into an object after 
+//	 the user has chosen their character?
+//2. How can I make the opponents clickable after the moveThemDown()?
+//2.5 Why do my boolean vars work for conditionals in some places
+//    but not others?	
+//3. Why can't the pics append back to where they were? reset()
+//4. Line 144, why are they different?
+//5.Maybe I should play with return?
+
+
+
+
+
+
+//To do:
+
+//1. Identify needed global Variables	x
+//2. Move all characters other than user's choice down to 
+//   opponent section	√
+//3. Select opponent to go down to melee
+//4. Give user instructions. Alerts at every stage would be annoying.
+
+
+// Game steps:
+
+// 1. Move user-selected character down to player 1		√
+// 2. Move all remaining characters to your opponents	√
+// 3. Move user-selected character down to melee	x
+// 4. On clicking the attack button, the user attacks the 
+//    selected opponent, and that opponent retaliates √
+		// 4a. The user's player attacks, incrementing damage √
+		// 4b. The com retaliates √
+// 5. When opponent health <= 0, user can choose new foe x
+// 6. When user health <= 0, prompt you lose 
+// 7. Give reset button functionality x
+
+$(document).ready(function() {
 
 //Global Variables:
-var mario = {
-		dam: 8,
-		hp: 120,
-		powerUp: 8,
-}
+var characters = [mario,kirby,dk,pikachu];
 
-		//Kirby stats
-var kirby = {
-		dam: 4,
-		hp: 180,
-		powerUp: 4,
-}
+	//Mario stats
+	var mario = {
+	dam: 8,
+	hp: 120,
+	powerUp: 8,
+	// stats: function(){
+	// 	$("#mario")
+	// }
+	position: [],
+	life: [],
+	}
+	// var marioStats = mario.attr($("#mario"))
 
-		//DK stats
-var dk = {
-		dam: 10,
-		hp: 100,
-		powerUp: 10,
-}
+	//Kirby stats
+	var kirby = {
+	dam: 4,
+	hp: 180,
+	powerUp: 4,
+	position: [],
+	life: [],
+	}
+	// var kirbyStats = kirby.attr($("#kirby"))
 
-		//Pikachu stats
-var pikachu = {
-		dam: 6,
-		hp: 145,
-		powerUp: 6,
-}
-var playerStats;
-var opponentStats;
-var isCharacterChosen;
-var hasNotPicked;
-var isEnemyChosen;
-var mario;
-var kirby;
-var dk;
-var pikachu;
+	//DK stats
+	var dk = {
+	dam: 10,
+	hp: 100,
+	powerUp: 10,
+	position: [],
+	life: [],
+	}
+	// var dkStats = dk.attr($("#dk"))
 
+	//Pikachu stats
+	var pikachu = {
+	dam: 6,
+	hp: 145,
+	powerUp: 6,
+	position: [],
+	life: [],
+	}
+	// var pikaStats = pikachu.attr($("#pika"))
 
-function gameStart() {
+	var playerStats = {};
+	var opponentStats = {};
 
-		//Gives the value of the object to the image element in html
-		$("#mario").val(mario);
-		$("#kirby").val(kirby);
-		$("#dk").val(dk);
-		$("#pika").val(pikachu);
+	var isCharacterChosen = false;
+	var hasNotPicked = true;
+	var isEnemyChosen = false;
 
-		//
+	function gameStart() {
+
+	var mario = {
+	dam: 8,
+	hp: 120,
+	powerUp: 8,
+	// stats: function(){
+	// 	$("#mario")
+	// }
+	position: [],
+	life: [],
+	}
+	// var marioStats = mario.attr($("#mario"))
+
+	//Kirby stats
+	var kirby = {
+	dam: 4,
+	hp: 180,
+	powerUp: 4,
+	position: [],
+	life: [],
+	}
+
+	//DK stats
+	var dk = {
+	dam: 10,
+	hp: 100,
+	powerUp: 10,
+	position: [],
+	life: [],
+	}
+
+	//Pikachu stats
+	var pikachu = {
+	dam: 6,
+	hp: 145,
+	powerUp: 6,
+	position: [],
+	life: [],
+	}
+
+	//Gives the value of the object to the image element in html
+	$("#mario").val(mario);
+	$("#kirby").val(kirby);
+	$("#dk").val(dk);
+	$("#pika").val(pikachu);
+
+	//
 		marioStats = $("#mario").val();
 		kirbyStats = $("#kirby").val();
 		dkStats = $("#dk").val();
 		pikaStats = $("#pika").val();
 
+	console.log(k);	
 
-		playerStats ={};
-		opponentStats = {};
 
-		isCharacterChosen = false;
-		isEnemyChosen = false;
-		isFighting = false;
-						for(var m in mario) playerStats[m]=mario[m];
+	var playerStats = {};
+	var opponentStats = {};
+
+	var isCharacterChosen = false;
+	var hasNotPicked = true;
+	var isEnemyChosen = false;
 	};
+
+
 
 	gameStart();
 
+	//Reset
+	function reset() {
+	gameStart();	
+	$(".character").appendTo(".char-possible");
+	// $("#player-one, #opponents, #current-opponent, #result").empty();
+  };
+
+  //Reset button... Needs work
 	$("#start-over").on("click", function() {
-		gameStart();
+		reset();
 		console.log("reset");
+	});
+		
+	//Moves the chosen character to player 1
+	//attribute disabled
+	
+	$(".character").on("click", function() {
+		var d = $("#dk").val();
+		//just in case: if (hasNotPicked === true) {
+		if (hasNotPicked) {
+			$(this).appendTo("#player-one");
+			//Assign the character's stats to playerStats object
+			//How do I tell the console I want to assign the chosen
+			//character's stats to playerStats?
+			isCharacterChosen = true;
+			moveThemDown();
+			// var yourPick = $(this).attr("ID");
+			// playerStats.push(yourPick);
+			var yourPick = $(this).val("ID");
+			console.log($("#mario").val());
+			console.log(d);
+			console.log(yourPick);
+			console.log(playerStats);
+
+		}
 		
 	});
 	
-	
-	$(".character").on("click", function() {
-			//the return code makes it so that it wont run this click
-			// unless it happens before the other booleans become true
-			if (isCharacterChosen || isEnemyChosen || isFighting) return;
-			//if this has an id of mario push marioStats to playerStats
-			$(this).appendTo("#player-one");
-			moveThemDown();
-			//Assigns character stats to user's player
-			if ($(this).is("#mario")) {
-				for(var m in mario) playerStats[m]=mario[m];
-				console.log("It's a me");
-				$(this).removeClass("bad-guys");
-			}
-			
-			else if ($(this).is("#kirby")) {
-				for(var k in kirby) playerStats[k]=kirby[k];
-				console.log("I can fly")
-				$(this).removeClass("bad-guys");
-			}	
-			
-			else if ($(this).is("#dk")) {
-				for(var d in dk) playerStats[d]=dk[d];
-				console.log("Bananas")
-				$(this).removeClass("bad-guys");
-			}			
-
-			else if ($(this).is("#pika")) {
-				for(var p in pikachu) playerStats[p]=pikachu[p];
-				console.log("PEEEEEKKAAAAAAACCCHHUUUU")
-				$(this).removeClass("bad-guys");				
-			}	
-
-			else { 
-				$(".bad-guys")
-			}				
-			console.log(playerStats);
-			isCharacterChosen = true;
-	});
-
-// ...
-
-
 
 	//Moves non-chosen characters down to opponents section
 	function moveThemDown() {
+		if (isCharacterChosen) {
 			$(".char-possible").appendTo("#opponents")
+			hasNotPicked = false;
 			console.log("they bounced");
 			$(".character").addClass("bad-guys");
+		}
 	};
 
+	// Move chosen opponent down to melee
+	// function chooseFoe() {
+	// 	if(isEnemyChosen) {
+	// 	$(".character").attr("disabled", false);
+	// 	$(this).appendTo("#current-opponent");
+	// 	}
+	// };
 
 	// Move chosen opponent down to melee
 	$(".bad-guys").on("click", function() {
-		if (isCharacterChosen || isEnemyChosen || isFighting) return;
+		if (hasNotPicked = false) {
 			$(this).appendTo("#current-opponent");
-			console.log("You picked a foe");
-
-			if ($(this).is("#mario")) {
-				for(var m in mario) opponentStats[m]=mario[m];
-				console.log("It's a me");
-				$(this).addClass("melee-bg");
-			}
+			console.log("You picked a foe")	
+		}
 			
-			else if ($(this).is("#kirby")) {
-				for(var k in kirby) opponentStats[k]=kirby[k];
-				console.log("I can fly")
-				$(this).addClass("melee-bg");
-			}	
-			
-			else if ($(this).is("#dk")) {
-				for(var d in dk) opponentStats[d]=dk[d];
-				console.log("Bananas")
-				$(this).addClass("melee-bg");
-			}			
-
-			else if ($(this).is("#pika")) {
-				for(var p in pikachu) opponentStats[p]=pikachu[p];
-				console.log("PEEEEEKKAAAAAAACCCHHUUUU")		
-				$(this).addClass("melee-bg");	
-			}	
-			console.log(opponentStats);
 	});
 
 	 // What happens when the attack button is clicked
 	 $(".attack").on("click", function() {
-	 	// if () return;
-	 	opponentStats.hp -= playerStats.dam;
-	 	playerStats.dam += playerStats.powerUp;
-	 	playerStats.hp -= opponentStats.dam;
-	 	console.log("enemy health: " + opponentStats.hp)
-	 	console.log("Player damage: " + playerStats.dam)
-	 	console.log("Player Health: " + playerStats.hp)
-	 	});
 
-	 function playerDam() {
+	 });
+			
+	 //Player attack
+	 // function playerAttack(){
+	 // 	//push characteristics into an empty object
+	 // 	.attr(playerStats)
+	 // 	opponentStats.hp -= playerStats.dam;
+	 // 	playerStats.dam += playerStats.powerUp;
+	 	
+	 // }
 
-	 } 
+	 //Foe attack
+// 	 function foeAttack() {
+// 	 	playerStats.hp -= opponentStats.dam;
+// 	 }
 
 });
-</script>
+// 	//This will go somewhere else
+// 	if (playerStats.hp <= 0) {
+// 		alert("You Lose")
+// 	}
 
+
+
+
+//Might be used... might go to graveyard... might include pseudocode...
+
+//$(".character").removeAttr("disbled")
+// $(".character").attr("disabled", false)
+// $(".character").attr("disabled", true)
+
+// if (playerHealth <= 0) {
+// 	$("#game-over").text(show())
+// }
+
+
+// var obj = []
+// obj.key = {}
+
+// object.key.push()
+
+
+
+// reference wk 3 day 4 slides for push object data to another
+</script> -->
 </html>
