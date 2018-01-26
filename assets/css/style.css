@@ -60,9 +60,9 @@ h3 {
 	font-size: 20px;
 	padding: 8px;
 	background-color:rgb(70,230,70);
-	position: relative;
-	width: 75px;
-	margin-left: 5px;
+	position: absolute;
+	left: 50%;
+	top: 20%;
 }
 
 .attack:hover {

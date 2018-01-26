@@ -3,30 +3,30 @@ $(document).ready(function() {
 
 	//Global Variables:
 	var mario = {
-			dam: 8,
+			dam: 12,
 			hp: 120,
-			powerUp: 8,
+			powerUp: 4,
 	}
 
 			//Kirby stats
 	var kirby = {
-			dam: 4,
+			dam: 8,
 			hp: 180,
-			powerUp: 4,
+			powerUp: 2,
 	}
 
 			//DK stats
 	var dk = {
-			dam: 10,
+			dam: 15,
 			hp: 100,
-			powerUp: 10,
+			powerUp: 5,
 	}
 
 			//Pikachu stats
 	var pikachu = {
-			dam: 6,
+			dam: 10,
 			hp: 145,
-			powerUp: 6,
+			powerUp: 3,
 	}
 	var playerStats;
 	var opponentStats;
@@ -58,7 +58,10 @@ $(document).ready(function() {
 
 	$("#start-over").on("click", function() {
 		gameStart();
-		console.log("reset");		
+		console.log("reset");	
+		$(".character").show();
+		$(".character").appendTo(".char-possible");
+		$(".character").removeClass(".melee-bg");	
 	});
 
 
@@ -155,7 +158,7 @@ $(document).ready(function() {
 
 			 	if (opponentStats.hp <= 0){
 			 		//delete fallen foe
-				$(".melee-bg").remove();
+				$(".melee-bg").hide();
 			 	isEnemyChosen = false;
 			 	opponentStats = {};	
 			 	enemyDown++;	 		
@@ -163,6 +166,10 @@ $(document).ready(function() {
 
 			if (enemyDown === 3) {
 				alert("congrats")
+			}
+
+			if (playerStats.hp <= 0) {
+				alert("You're garbage");
 			}
 
 		 	});
