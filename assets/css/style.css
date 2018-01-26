@@ -7,6 +7,7 @@ body {
     background-size: 100%;
     font-family: 'Bangers', cursive;
     color: white;
+    margin-left: 10px;
 }
 
 h3 {
@@ -77,4 +78,9 @@ h3 {
 	bottom: 0px;
 	width: 30%;
 	height: auto;
+}
+
+.score-board {
+	float: right;
+	margin-right: 40px;
 }

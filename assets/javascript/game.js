@@ -190,33 +190,24 @@ $(document).ready(function() {
 
 		 // What happens when the attack button is clicked
 		 $(".attack").on("click", function() {
-		 	// if () return;
-		 	opponentStats.hp -= playerStats.dam;
-		 	playerStats.dam += playerStats.powerUp;
-		 	playerStats.hp -= opponentStats.dam;
-		 	console.log("enemy health: " + opponentStats.hp);
-		 	console.log("Player damage: " + playerStats.dam);
-		 	console.log("Player Health: " + playerStats.hp);
-		 	$("#player-health").text(playerStats.hp);
-		 	$("#player-damage").text(playerStats.dam);
-		 	$("#opponent-health").text(opponentStats.hp);
-		 	$("#opponent-damage").text(opponentStats.dam);
+		 	if (!isCharacterChosen || !isEnemyChosen) return;
+			 	opponentStats.hp -= playerStats.dam;
+			 	playerStats.dam += playerStats.powerUp;
+			 	playerStats.hp -= opponentStats.dam;
 
-		 	if (opponentStats.hp <= 0){
-		 		//delete fallen foe
-			$(".melee-bg").remove();
-		 	isEnemyChosen = false;
-		 	opponentStats = {};		 		
-		 		// deleteLoser();
-		 }
+			 	$("#player-health").text(playerStats.hp);
+			 	$("#player-damage").text(playerStats.dam);
+			 	$("#opponent-health").text(opponentStats.hp);
+			 	$("#opponent-damage").text(opponentStats.dam);
 
+			 	if (opponentStats.hp <= 0){
+			 		//delete fallen foe
+				$(".melee-bg").remove();
+			 	isEnemyChosen = false;
+			 	opponentStats = {};		 		
+			 }
 
 		 	});
 
-		 function deleteLoser(){
-			$("#current-opponent").remove();
-		 	isEnemyChosen = false;
-		 	opponentStats = {};
-		 };
 
 });
