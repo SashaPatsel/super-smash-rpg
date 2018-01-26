@@ -39,13 +39,7 @@ $(document).ready(function() {
 	var pikachu;
 
 
-		function gameStart() {
-
-				//Gives the value of the object to the image element in html
-			$("#mario").val(mario);
-			$("#kirby").val(kirby);
-			$("#dk").val(dk);
-			$("#pika").val(pikachu);
+	function gameStart() {
 
 				//
 			marioStats = $("#mario").val();
@@ -62,15 +56,47 @@ $(document).ready(function() {
 			isFighting = false;
 
 			//for(var m in mario) playerStats[m]=mario[m];
-		};
+	};
 
+	gameStart();
+
+	$("#start-over").on("click", function() {
 		gameStart();
+		console.log("reset");		
+	});
 
-		$("#start-over").on("click", function() {
-			gameStart();
-			console.log("reset");
-			
-		});
+	//choose new character
+	// $(".character").on("click", function() {
+	// 		if (!isCharacterChosen || isEnemyChosen || isFighting) return;
+				
+	// 			$(this).appendTo("#current-opponent");
+	// 			console.log("You picked a foe");
+
+	// 			if ($(this).is("#mario")) {
+	// 				for(var m in mario) opponentStats[m]=mario[m];
+	// 				console.log("It's a me");
+	// 				$(this).addClass("melee-bg");
+	// 			}
+				
+	// 			else if ($(this).is("#kirby")) {
+	// 				for(var k in kirby) opponentStats[k]=kirby[k];
+	// 				console.log("I can fly")
+	// 				$(this).addClass("melee-bg");
+	// 			}	
+				
+	// 			else if ($(this).is("#dk")) {
+	// 				for(var d in dk) opponentStats[d]=dk[d];
+	// 				console.log("Bananas")
+	// 				$(this).addClass("melee-bg");
+	// 			}			
+
+	// 			else if ($(this).is("#pika")) {
+	// 				for(var p in pikachu) opponentStats[p]=pikachu[p];
+	// 				console.log("PIIIIIIKKAAAAAAACCCHHUUUU")		
+	// 				$(this).addClass("melee-bg");	
+	// 			}	
+	// 			isEnemyChosen = true;
+	// 	});
 
 				// Move chosen opponent down to melee
 				//This HAS to be written BEFORE the prior onClick
@@ -104,7 +130,6 @@ $(document).ready(function() {
 					$(this).addClass("melee-bg");	
 				}	
 				isEnemyChosen = true;
-				console.log(opponentStats);
 		});
 		
 		
@@ -169,13 +194,29 @@ $(document).ready(function() {
 		 	opponentStats.hp -= playerStats.dam;
 		 	playerStats.dam += playerStats.powerUp;
 		 	playerStats.hp -= opponentStats.dam;
-		 	console.log("enemy health: " + opponentStats.hp)
-		 	console.log("Player damage: " + playerStats.dam)
-		 	console.log("Player Health: " + playerStats.hp)
+		 	console.log("enemy health: " + opponentStats.hp);
+		 	console.log("Player damage: " + playerStats.dam);
+		 	console.log("Player Health: " + playerStats.hp);
+		 	$("#player-health").text(playerStats.hp);
+		 	$("#player-damage").text(playerStats.dam);
+		 	$("#opponent-health").text(opponentStats.hp);
+		 	$("#opponent-damage").text(opponentStats.dam);
+
+		 	if (opponentStats.hp <= 0){
+		 		//delete fallen foe
+			$(".melee-bg").remove();
+		 	isEnemyChosen = false;
+		 	opponentStats = {};		 		
+		 		// deleteLoser();
+		 }
+
+
 		 	});
 
-		 function playerDam() {
-
-		 } 
+		 function deleteLoser(){
+			$("#current-opponent").remove();
+		 	isEnemyChosen = false;
+		 	opponentStats = {};
+		 };
 
 });

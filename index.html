@@ -12,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Bangers" rel="stylesheet">
 </head>
 <body>
+	
 		<!-- Header div -->
 		<h1 class="first-head">Super Smash Bros! <span id="sad-kinda">(kind of)</span></h1>
 			<audio class="audio-player" controls autoplay loop> 
@@ -20,18 +21,40 @@
 
 			<!-- Start over button -->
 			<div id="start-over">Start Over</div>
-			<!-- Close header div -->
+
+			<!-- Background pic -->
+			<img class="bck-grnd"  src="assets/images/ssb-background3.png">
+
+			<!-- on click open game instructions -->
+	<div class="row">
 
 			<!-- Character div -->
-			<div class="char-possible">
+		<div class="char-possible col-md-6">
 			<img id="mario" class="character" width="10%" height="auto" value=mario src="assets/images/Mario-ssb.png">
 			<img id="kirby" class="character" width="10%" height="auto" src="assets/images/kirby-ssb.png">
 			<img id="dk" class="character" width="10%" height="auto" src="assets/images/Donkey-Kong-ssb.png">
 			<img id="pika" class="character" width="10%" height="auto" src="assets/images/Pikachu-ssb.png">
-			</div>
-			<!-- Close characer div -->
+		</div>
+		<div class="col-md-6">
+			<h2 class="char-select">Score:</h2>	
+			
+			<h3>Player Health: </h3>
+			<div id="player-health"></div>
+
+			<h3>Player Damage: </h3>
+			<div id="player-damage"></div>
+
+			<h3>Opponent Health: </h3>
+			<div id="opponent-health"></div>
+
+			<h3>Opponent Damage: </h3>
+			<div id="opponent-damage"></div>
+		</div>
+	</div>
 
 		<!-- Game data div -->
+
+		<!-- Character select-->
 		<h2 class="char-select">Player 1:</h2>
 			<div id="player-one"></div>
 
@@ -44,12 +67,12 @@
 
 		<div class="attack">Attack!</div>	
 
-		<h2 class="char-select">Score:</h2>	
-			<div id="score-board"></div>
+
 		<!-- close game data div -->
 	
 	
 		<!-- All should be centered for mobile version. Will need to use media queries -->
+	
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="assets/javascript/game.js"></script>

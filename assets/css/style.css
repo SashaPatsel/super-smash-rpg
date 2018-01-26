@@ -1,16 +1,20 @@
 body {
 	/*Media queries for condensed screen size? or replace 
 	whole background image with color and manually place image in middle*/
-	background-image: url(../images/ssb-background3.png);
+	background-color: rgb(40,40,40);
+/*	background-image: url(../images/ssb-background3.png);*/
 	background-repeat: no-repeat;
     background-size: 100%;
     font-family: 'Bangers', cursive;
+    color: white;
 }
 
+h3 {
+	font-size: 30px;
+}
 
 .first-head {
 	text-align: center;
-	color: white;
 	font-size: 60px;
 }
 
@@ -31,14 +35,12 @@ body {
 
 .char-select {
 	font-size: 40px;
-	color: white;
 }
 
 #start-over {
 	font-size: 20px;
 	padding: 8px;
 	background-color:rgb(110,110,110);
-	color: white;
 	position: absolute;
 	top: 10px;
     left: .5%;
@@ -56,7 +58,6 @@ body {
 	font-size: 20px;
 	padding: 8px;
 	background-color:rgb(70,230,70);
-	color: white;
 	position: relative;
 	width: 75px;
 	margin-left: 5px;
@@ -68,4 +69,12 @@ body {
 
 .melee-bg {
 	border: solid red 3px;
+}
+
+.bck-grnd {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	width: 30%;
+	height: auto;
 }
