@@ -37,16 +37,10 @@ $(document).ready(function() {
 	var kirby;
 	var dk;
 	var pikachu;
+	var enemyDown;
 
 
 	function gameStart() {
-
-				//
-			marioStats = $("#mario").val();
-			kirbyStats = $("#kirby").val();
-			dkStats = $("#dk").val();
-			pikaStats = $("#pika").val();
-
 
 			playerStats ={};
 			opponentStats = {};
@@ -54,7 +48,9 @@ $(document).ready(function() {
 			isCharacterChosen = false;
 			isEnemyChosen = false;
 			isFighting = false;
+			gameDone = false;
 
+			enemyDown = 0;
 			//for(var m in mario) playerStats[m]=mario[m];
 	};
 
@@ -65,68 +61,32 @@ $(document).ready(function() {
 		console.log("reset");		
 	});
 
-	//choose new character
-	// $(".character").on("click", function() {
-	// 		if (!isCharacterChosen || isEnemyChosen || isFighting) return;
-				
-	// 			$(this).appendTo("#current-opponent");
-	// 			console.log("You picked a foe");
-
-	// 			if ($(this).is("#mario")) {
-	// 				for(var m in mario) opponentStats[m]=mario[m];
-	// 				console.log("It's a me");
-	// 				$(this).addClass("melee-bg");
-	// 			}
-				
-	// 			else if ($(this).is("#kirby")) {
-	// 				for(var k in kirby) opponentStats[k]=kirby[k];
-	// 				console.log("I can fly")
-	// 				$(this).addClass("melee-bg");
-	// 			}	
-				
-	// 			else if ($(this).is("#dk")) {
-	// 				for(var d in dk) opponentStats[d]=dk[d];
-	// 				console.log("Bananas")
-	// 				$(this).addClass("melee-bg");
-	// 			}			
-
-	// 			else if ($(this).is("#pika")) {
-	// 				for(var p in pikachu) opponentStats[p]=pikachu[p];
-	// 				console.log("PIIIIIIKKAAAAAAACCCHHUUUU")		
-	// 				$(this).addClass("melee-bg");	
-	// 			}	
-	// 			isEnemyChosen = true;
-	// 	});
 
 				// Move chosen opponent down to melee
 				//This HAS to be written BEFORE the prior onClick
 		$(".character").on("click", function() {
-			if (!isCharacterChosen || isEnemyChosen || isFighting) return;
+			if (!isCharacterChosen || isEnemyChosen || isFighting || gameDone) return;
 				
 				$(this).appendTo("#current-opponent");
 				console.log("You picked a foe");
 
 				if ($(this).is("#mario")) {
 					for(var m in mario) opponentStats[m]=mario[m];
-					console.log("It's a me");
 					$(this).addClass("melee-bg");
 				}
 				
 				else if ($(this).is("#kirby")) {
 					for(var k in kirby) opponentStats[k]=kirby[k];
-					console.log("I can fly")
 					$(this).addClass("melee-bg");
 				}	
 				
 				else if ($(this).is("#dk")) {
 					for(var d in dk) opponentStats[d]=dk[d];
-					console.log("Bananas")
 					$(this).addClass("melee-bg");
 				}			
 
 				else if ($(this).is("#pika")) {
-					for(var p in pikachu) opponentStats[p]=pikachu[p];
-					console.log("PIIIIIIKKAAAAAAACCCHHUUUU")		
+					for(var p in pikachu) opponentStats[p]=pikachu[p];		
 					$(this).addClass("melee-bg");	
 				}	
 				isEnemyChosen = true;
@@ -136,7 +96,7 @@ $(document).ready(function() {
 		$(".character").on("click", function() {
 				//the return code makes it so that it wont run this click
 				// unless it happens before the other booleans become true
-				if (isCharacterChosen || isEnemyChosen || isFighting) return;
+				if (isCharacterChosen || isEnemyChosen || isFighting || gameDone) return;
 				//if this has an id of mario push marioStats to playerStats
 
 				//Assigns character stats to user's player
@@ -174,10 +134,6 @@ $(document).ready(function() {
 				console.log(isCharacterChosen);
 		});
 
-	// ...
-
-
-
 		//Moves non-chosen characters down to opponents section
 		function moveThemDown() {
 				$(".char-possible").appendTo("#opponents")
@@ -185,12 +141,9 @@ $(document).ready(function() {
 				// $("#opponents").addClass("bad-guys");
 		};
 
-
-
-
 		 // What happens when the attack button is clicked
 		 $(".attack").on("click", function() {
-		 	if (!isCharacterChosen || !isEnemyChosen) return;
+		 	if (!isCharacterChosen || !isEnemyChosen || gameDone) return;
 			 	opponentStats.hp -= playerStats.dam;
 			 	playerStats.dam += playerStats.powerUp;
 			 	playerStats.hp -= opponentStats.dam;
@@ -204,10 +157,18 @@ $(document).ready(function() {
 			 		//delete fallen foe
 				$(".melee-bg").remove();
 			 	isEnemyChosen = false;
-			 	opponentStats = {};		 		
-			 }
+			 	opponentStats = {};	
+			 	enemyDown++;	 		
+			  }
+
+			if (enemyDown === 3) {
+				alert("congrats")
+			}
 
 		 	});
 
 
 });
+
+
+

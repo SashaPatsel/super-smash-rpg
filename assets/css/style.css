@@ -28,6 +28,7 @@ h3 {
 	position: absolute;
 	top: 10px;
     right: .5%;
+    z-index: 6;
 }
 
 .audio-player:hover {
@@ -81,6 +82,11 @@ h3 {
 }
 
 .score-board {
-	float: right;
-	margin-right: 40px;
+	right: 40px;
+	position: absolute;
+	bottom: 340px;
+}
+
+.game-stats {
+	color: rgb(227,18,34);
 }
