@@ -173,6 +173,7 @@ $(document).ready(function() {
 
 			if (playerStats.hp <= 0) {
 				alert("Awwwww. Sorry");
+				$("#player-health").text("0")	
 			}
 
 		 	});
