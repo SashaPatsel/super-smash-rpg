@@ -145,7 +145,7 @@ $(document).ready(function() {
 		};
 
 		 // What happens when the attack button is clicked
-		 $(".attack").on("click", function() {
+		 $(document).on("click", ".attack", function() {
 		 	if (!isCharacterChosen || !isEnemyChosen || gameDone) return;
 			 	opponentStats.hp -= playerStats.dam;
 			 	playerStats.dam += playerStats.powerUp;
@@ -155,9 +155,12 @@ $(document).ready(function() {
 			 	$("#player-damage").text(playerStats.dam);
 			 	$("#opponent-health").text(opponentStats.hp);
 			 	$("#opponent-damage").text(opponentStats.dam);
-
-			 	if (opponentStats.hp <= 0){
-			 		//delete fallen foe
+		
+				
+				 
+			if (opponentStats.hp <= 0){
+					 //delete fallen foe
+				$("#opponent-health").text("0")	 
 				$(".melee-bg").hide();
 			 	isEnemyChosen = false;
 			 	opponentStats = {};	
@@ -169,7 +172,7 @@ $(document).ready(function() {
 			}
 
 			if (playerStats.hp <= 0) {
-				alert("You're garbage");
+				alert("Awwwww. Sorry");
 			}
 
 		 	});
