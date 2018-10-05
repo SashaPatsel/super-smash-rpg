@@ -90,3 +90,7 @@ h3 {
 .game-stats {
 	color: rgb(227,18,34);
 }
+
+input {
+	color: black;
+}

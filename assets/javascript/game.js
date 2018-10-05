@@ -51,7 +51,7 @@ $(document).ready(function() {
 			gameDone = false;
 
 			enemyDown = 0;
-			//for(var m in mario) playerStats[m]=mario[m];
+	
 	};
 
 	gameStart();
@@ -105,36 +105,31 @@ $(document).ready(function() {
 				//Assigns character stats to user's player
 				if ($(this).is("#mario")) {
 					for(var m in mario) playerStats[m]=mario[m];
-					console.log("It's a me");
+
 					$(this).removeClass("character");
 				}
 				
 				else if ($(this).is("#kirby")) {
 					for(var k in kirby) playerStats[k]=kirby[k];
-					console.log("I can fly")
+
 					$(this).removeClass("character");
 				}	
 				
 				else if ($(this).is("#dk")) {
 					for(var d in dk) playerStats[d]=dk[d];
-					console.log("Bananas")
+
 					$(this).removeClass("character");
 				}			
 
 				else if ($(this).is("#pika")) {
 					for(var p in pikachu) playerStats[p]=pikachu[p];
-					console.log("PIIIIIIIKKAAAAAAACCCHHUUUU")
+
 					$(this).removeClass("character");				
 				}	
 
-				// else { 
-				// 	$(".bad-guys")
-				// }	
 				$(this).appendTo("#player-one");	
 				moveThemDown();
-				console.log(playerStats);
 				isCharacterChosen = true;
-				console.log(isCharacterChosen);
 		});
 
 		//Moves non-chosen characters down to opponents section
