@@ -70,5 +70,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Notes
 - This is my first project using JQuery. I found it to be a very refreshing change from vanilla javascript. JQuery makes it a lot more straightforward to identify elements on the DOM and to manipulate them
-
-- 
