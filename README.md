@@ -2,9 +2,19 @@
 
 Super Smash Bros Game is an RPG Strategy Game.
 
+When you start, you can pick any of the four players on the screen. 
+
+Once you've chosen your character, you can pick an opponent to fight against. In the example below, Mario was chosen as player 1, and the first opponent to fight is DK. 
+
+When you defeat an opponent, you can pick from any of the remaining foes. 
+
+You win if you vanquish all the availbale enemies. Watch out though. If your health falls below 0, you lose. 
+
+Click [here](https://sashapatsel.github.io/super-smash-rpg/) to play.
+
 <img src="assets/images/demo.png">
 
-[Play Here](https://sashapatsel.github.io/super-smash-rpg/)
+
 
 ### Installing
 
@@ -19,29 +29,33 @@ Feel free to clone this repository! No other installation necessary.
 
 
 ## Code Snippets
+Here are some of the variables at play in this game
 ```javascript
-//Compares the user's guess to the word
-function guessVsWord(userInput) {
-	//-1 instead of zero because it won't register the first letter otherwise
-	if (wordQueue.indexOf(userInput) > -1) {
-		for (var i = 0; i < unguessed; i++) {
-      // A good guess
-			if (wordLetters[i] === userInput) {
-				guessTracker++;
-				goodGuesses[i] = userInput;
-				document.getElementById('the-word').innerHTML = goodGuesses.join(" ");
-			}	
-		}
-  }
-  // A wrong guess
-	else {
-		wrongGuesses.push(" " + userInput);
-		guessRemain --;
-		document.getElementById("guesses-remain").innerHTML = guessRemain;
-		document.getElementById("user-guesses").innerHTML = wrongGuesses;
-	}
-					
-};
+	var playerStats;
+	var opponentStats;
+	var isCharacterChosen;
+	var hasNotPicked;
+	var isEnemyChosen;
+	var mario;
+	var kirby;
+	var dk;
+	var pikachu;
+	var enemyDown;
+
+
+	function gameStart() {
+
+			playerStats ={};
+			opponentStats = {};
+
+			isCharacterChosen = false;
+			isEnemyChosen = false;
+			isFighting = false;
+			gameDone = false;
+
+			enemyDown = 0;
+	
+	};
 
 ```
 
@@ -55,6 +69,6 @@ function guessVsWord(userInput) {
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Notes
-- This is one of my first-ever projects in javascript! I found hangman to be a great exercise in learning the fundamentals of javascript.
+- This is my first project using JQuery. I found it to be a very refreshing change from vanilla javascript. JQuery makes it a lot more straightforward to identify elements on the DOM and to manipulate them
 
-- This project was also one of my first implementations of the bootstrap grid-system.
+- 
