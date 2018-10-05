@@ -134,7 +134,7 @@ $(document).ready(function() {
 
 		//Moves non-chosen characters down to opponents section
 		function moveThemDown() {
-				$(".char-possible").appendTo("#opponents")ß
+				$(".char-possible").appendTo("#opponents")
 		};
 
 		 // What happens when the attack button is clicked
